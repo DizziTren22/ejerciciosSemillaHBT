@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center">{{ header }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            
+            <div>
+                <label for="name">Nombre Persona: </label>
+                <br>
+                <input name="name" type="text" [(ngModel)]="persona.nombre" placeholder="Nombre persona"
+                    autocomplete="off" />
+            </div>
+            <br>
+            <div>
+                <label for="name">Apellido Persona: </label>
+                <br>
+                <input name="name" type="text" [(ngModel)]="persona.apellido" placeholder="Apellido persona"
+                    autocomplete="off" />
+            </div>
+
+            <br>
+            <div>
+                <label for="name">Telefono Persona: </label>
+                <br>
+                <input name="name" type="text" [(ngModel)]="persona.numeroTelefonico" placeholder="Telefono persona"
+                    autocomplete="off" />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <label for="name">Numero de identificacion:</label>
+                <br>
+                <input name="name" type="text" [(ngModel)]="persona.numeroIdentificacion"
+                    placeholder="Numero de identificacion" autocomplete="off" />
+            </div>
+            <br>
+            <div>
+                <label for="name">Sexo Persona: </label>
+                <br>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" checked>Femenino
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Masculino
+                </label>
+            </div>
+            <div>
+                <label for="name">Mayor edad Persona: </label>
+                <br>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" checked>Si
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">No
+                </label>
+            </div>
+            <div>
+                    <label for="name">Tipo de identificacion</label>
+                    <br>
+                <select class="mdb-select md-form">
+                    <option value="" disabled selected>Selecciona tipo identificacion</option>
+                    <option [(ngModel)]="persona.tipoIdentificacion" value="1">{{tipoIdentificacion.cedula}}</option>
+                    <option value="2">{{tipoIdentificacion.tarjeta}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
