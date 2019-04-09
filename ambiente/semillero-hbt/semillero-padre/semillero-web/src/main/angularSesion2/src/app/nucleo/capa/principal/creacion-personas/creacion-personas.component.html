@@ -6,8 +6,10 @@
     </div>
 
     <div class="row">
+            <form>
+
         <div class="col-sm-6">
-            
+        
             <div>
                 <label for="name">Nombre Persona: </label>
                 <br>
@@ -21,7 +23,6 @@
                 <input name="name" type="text" [(ngModel)]="persona.apellido" placeholder="Apellido persona"
                     autocomplete="off" />
             </div>
-
             <br>
             <div>
                 <label for="name">Telefono Persona: </label>
@@ -30,14 +31,25 @@
                     autocomplete="off" />
             </div>
         </div>
+
+        <!-- segunda columna -->
         <div class="col-sm-6">
+
+            <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+                <option value="0">Selecciona una opción</option>
+                <option *ngFor="let dato of datos">
+                  {{dato}}
+                </option>
+            </select>
+            
+            <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
             <div>
                 <label for="name">Numero de identificacion:</label>
                 <br>
                 <input name="name" type="text" [(ngModel)]="persona.numeroIdentificacion"
                     placeholder="Numero de identificacion" autocomplete="off" />
             </div>
-            <br>
+
             <div>
                 <label for="name">Sexo Persona: </label>
                 <br>
@@ -58,15 +70,9 @@
                     <input type="radio" name="optradio">No
                 </label>
             </div>
-            <div>
-                    <label for="name">Tipo de identificacion</label>
-                    <br>
-                <select class="mdb-select md-form">
-                    <option value="" disabled selected>Selecciona tipo identificacion</option>
-                    <option [(ngModel)]="persona.tipoIdentificacion" value="1">{{tipoIdentificacion.cedula}}</option>
-                    <option value="2">{{tipoIdentificacion.tarjeta}}</option>
-                </select>
-            </div>
+
         </div>
+        <input value="guardar Formulario" type="submit" (click)="guardar()" />
+            </form>
     </div>
 </div>
