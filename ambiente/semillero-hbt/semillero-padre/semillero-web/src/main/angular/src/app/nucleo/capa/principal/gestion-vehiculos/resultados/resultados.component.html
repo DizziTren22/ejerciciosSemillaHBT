@@ -1,0 +1,51 @@
+<form>
+  <h2>
+    {{ marca }}
+  </h2>
+  <h3> Componente hijo / Presentacion</h3>
+  <div class="card">
+    <div class="section">
+      {{ placa }}
+    </div>
+  </div>
+
+  <h2>Llamado servicios</h2>
+  <input value="Consultar personas" type="submit" (click)="consultarPersonas()" />
+  <pre>{{ listaPersonasDTO | json }}</pre>
+  <h3>Consultar Vehiculo</h3>
+  <br>
+  <div class="row">
+    <div class="col">
+      <h4>Consultar Marca</h4>
+      <select class="form-control form-control-sm">
+        <option *ngFor="let marca of listaMarca">{{marca.nombre}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <h4>Consultar Linea</h4>
+      <select class="form-control form-control-sm">
+        <option *ngFor="let linea of listaLinea">{{linea.nombre}}</option>
+      </select>
+    </div>
+  </div>
+
+  <input value="Consultar Vehiculos" type="submit" (click)="consultarVehiculos()" />
+  <br>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>IdVehiculo</th>
+        <th>Placa</th>
+        <th>Modelo</th>
+        <th>Linea</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let vehiculos of listaVehiculoDTO">
+      <td>{{vehiculos.idVehiculo}}</td>
+      <td>{{vehiculos.placa}}</td>
+      <td>{{vehiculos.modelo}}</td>
+      <td>{{vehiculos.linea.idLinea}}</td>
+    </tr>
+  </table>
+</form>

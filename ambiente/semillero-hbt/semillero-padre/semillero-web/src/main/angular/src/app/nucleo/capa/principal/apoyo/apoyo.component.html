@@ -1,19 +1,44 @@
-<form >
-  <input value="Mostrar Formulario" type="button" (click)="mostrar()" />
-  <br>
-  <input value="Ocultar Formulario" type="button" (click)="ocultar()" />
-      <section>
-          <label for="name">Nombre Persona</label>
-          <input name="name" type="text" [(ngModel)]="persona.nombre"  placeholder="Nombre persona" />
-        
-      </section>
-      <input value="guardar Formulario" type="submit" (click)="guardar()" />
-      <ul *ngIf ="personas.length>0">
-          <li *ngFor ="let per of personas">
-            <span> {{ per.nombre | lowercase }}</span>
-            <span>{{ per.apellido | uppercase }}</span>
-            <input value="Borrar" type="button" (click)="borrar(per)">
-          </li>
-        </ul>
-        <pre>{{ persona | json }}</pre>
+<form>
+	<input value="Mostrar Formulario" type="button" (click)="mostrar()" />
+	<input value="Ocultar Formulario" type="button" (click)="ocultar()" />
+	<input value={{mostrarFormulario}} disabled="true"/>
+
+	<div [ngStyle]="{'background-color':'green'}">
+		<fieldset *ngIf="mostrarFormulario">
+			<legend>Personas Formulario</legend>
+		</fieldset>
+	</div>
+		
+	<section>
+	  <label for="name">Nombre</label>
+	  <input name="name" type="text" [(ngModel)]="persona.nombre" placeholder="Nombre persona" />
+	</section>
+	
+	<section>
+	  <label for="isMayor">Es mayor edad</label>
+	  <input name="isVIP" type="checkbox" [(ngModel)]="persona.mayorEdad" />
+	</section>
+	
+	<section>
+	  <label for="sexo">Sexo</label>
+	  <input name="sexo" value="hombre" type="radio" [(ngModel)]="persona.sexo" />
+	  <i>Hombre</i>
+	  <input name="sexo" value="mujer" type="radio" [(ngModel)]="persona.sexo" />
+	  <i>Mujer</i>
+	</section>
+	
+	<pre>{{ persona | json }}</pre>
+	
+	<input value="Guardar" type="submit" (click)="guardar()" />
+	
+	<ul *ngIf="personas.length>0; else empty">
+	  <li *ngFor="let per of personas">
+	    <span>{{ per.nombre | uppercase}}</span>
+	    <span>{{ per.apellido }}</span>
+	    <input value="Borrar" type="button" (click)="borrar(per)">
+	  </li>
+	</ul>
+	<ng-template #empty>
+	  <i>Sin datos</i>
+	</ng-template>
 </form>

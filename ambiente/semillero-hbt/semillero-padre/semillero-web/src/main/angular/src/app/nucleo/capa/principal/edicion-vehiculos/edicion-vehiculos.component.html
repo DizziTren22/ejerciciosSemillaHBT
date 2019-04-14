@@ -1,0 +1,25 @@
+<h3>Editar vehiculo</h3>
+<hr>
+<form>
+  <div class="row">
+    <section>
+      <label for="name">IdVehiculo: </label>
+      <input name="name" type="text" placeholder="{{vehiculoDTO.idVehiculo}}" disabled />
+    </section>
+  </div>
+  <br>
+  <div class="row">
+    <section class="col">
+      <label for="name">Placa: </label>
+      <input name="name" type="text" [(ngModel)]="vehiculoDTO.placa" placeholder="placa vehiculo" />
+    </section>
+    <section class="col">
+      <label for="name">Modelo: </label>
+      <input name="name" type="text" [(ngModel)]="vehiculoDTO.modelo" placeholder="modelo vehiculo" />
+    </section>
+  </div>
+  <br>
+  <div class="row">
+      <input value="Actualizar" type="submit" (click)="editarVehiculo()" class="col-md-6 col-md-offset-4"/>
+  </div>
+</form>

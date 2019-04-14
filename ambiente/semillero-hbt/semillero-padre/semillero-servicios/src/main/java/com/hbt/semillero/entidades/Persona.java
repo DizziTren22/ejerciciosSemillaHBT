@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 
+ * Clase que determina la entidad de persona
  */
 @Entity
 @Table(name = "PERSONA")

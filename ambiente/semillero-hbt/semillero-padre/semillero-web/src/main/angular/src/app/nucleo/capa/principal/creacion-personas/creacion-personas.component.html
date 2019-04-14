@@ -1,78 +1,76 @@
-<div class="container">
+<h3>Crear Persona</h3>
+<hr>
+<form>
     <div class="row">
-        <div class="col-sm-12">
-            <h2 class="text-center">{{ header }}</h2>
+        <div class="col">
+            <section>
+                <label for="name">Nombre: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.nombres" placeholder="nombre" />
+            </section>
+            <br>
+            <section>
+                <label for="name">Apellido: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.apellidos" placeholder="apellido" />
+            </section>
+            <br>
+            <section>
+                <label for="name">tipoIdentificacion: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.tipoIdentificacion"
+                    placeholder="tipoIdentificacion" />
+            </section>
+            <br>
+            <section>
+                <label for="name">numeroIdentificacion: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.numeroIdentificacion"
+                    placeholder="numeroIdentificacion" />
+            </section>
+        </div>
+        <div class="col">
+            <section>
+                <label for="name">edad: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.edad" placeholder="edad" />
+            </section>
+            <br>
+            <section>
+                <label for="name">numeroTelefonico: </label>
+                <input name="name" type="text" [(ngModel)]="personaDTO.numeroTelefonico"
+                    placeholder="numeroTelefonico" />
+            </section>
+            <br>
+            <section>
+                <label for="isMayor">Es comprador</label>
+                <input name="isVIP" type="checkbox" [(ngModel)]="personaDTO.comprador" />
+            </section>
+            <br>
+            <section>
+                <label for="isMayor">Es vendedor</label>
+                <input name="isVIP" type="checkbox" [(ngModel)]="personaDTO.vendedor" />
+            </section>
         </div>
     </div>
+    <input value="Guardar" type="submit" (click)="crearPersona()" />
+    <br>
+    <br>
+    <input value="Consultar" type="submit" (click)="consultarPersonas()" />
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>TipoIdentificacion</th>
+                <th>NumeroIdentificacion</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>NumeroTelefonico</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
 
-    <div class="row">
-            <form>
-
-        <div class="col-sm-6">
-        
-            <div>
-                <label for="name">Nombre Persona: </label>
-                <br>
-                <input name="name" type="text" [(ngModel)]="persona.nombre" placeholder="Nombre persona"
-                    autocomplete="off" />
-            </div>
-            <br>
-            <div>
-                <label for="name">Apellido Persona: </label>
-                <br>
-                <input name="name" type="text" [(ngModel)]="persona.apellido" placeholder="Apellido persona"
-                    autocomplete="off" />
-            </div>
-            <br>
-            <div>
-                <label for="name">Telefono Persona: </label>
-                <br>
-                <input name="name" type="text" [(ngModel)]="persona.numeroTelefonico" placeholder="Telefono persona"
-                    autocomplete="off" />
-            </div>
-        </div>
-
-        <!-- segunda columna -->
-        <div class="col-sm-6">
-
-            <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
-                <option value="0">Selecciona una opción</option>
-                <option *ngFor="let dato of datos">
-                  {{dato}}
-                </option>
-            </select>
-            
-            <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
-            <div>
-                <label for="name">Numero de identificacion:</label>
-                <br>
-                <input name="name" type="text" [(ngModel)]="persona.numeroIdentificacion"
-                    placeholder="Numero de identificacion" autocomplete="off" />
-            </div>
-
-            <div>
-                <label for="name">Sexo Persona: </label>
-                <br>
-                <label class="radio-inline">
-                    <input type="radio" name="optradio" checked>Femenino
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optradio">Masculino
-                </label>
-            </div>
-            <div>
-                <label for="name">Mayor edad Persona: </label>
-                <br>
-                <label class="radio-inline">
-                    <input type="radio" name="optradio" checked>Si
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optradio">No
-                </label>
-            </div>
-
-        </div>
-        <input value="guardar Formulario" type="submit" (click)="guardar()" />
-            </form>
-    </div>
-</div>
+        <tr *ngFor="let personas of personaDTOs">
+            <td>{{personas.tipoIdentificacion}}</td>
+            <td>{{personas.numeroIdentificacion}}</td>
+            <td>{{personas.nombres}}</td>
+            <td>{{personas.apellidos}}</td>
+            <td>{{personas.numeroTelefonico}}</td>
+            <td>{{personas.edad}}</td>
+        </tr>
+    </table>
+</form>

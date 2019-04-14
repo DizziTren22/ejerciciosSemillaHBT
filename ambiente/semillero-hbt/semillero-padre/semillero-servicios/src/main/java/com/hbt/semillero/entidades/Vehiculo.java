@@ -10,10 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
- * Clase vehiculo.
- * 
- *
+ * Clase que determina la entidad de vehiculo.
  */
 @Entity
 @Table(name = "VEHICULO")
@@ -56,6 +53,14 @@ public class Vehiculo {
 
 	public void setLinea(Linea linea) {
 		this.linea = linea;
+	}
+
+	public Long getIdVehiculo() {
+		return idVehiculo;
+	}
+
+	public void setIdVehiculo(Long idVehiculo) {
+		this.idVehiculo = idVehiculo;
 	}
 
 }

@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Clase que determina la entidad del vendedor
+ * @author Dizzi
+ *
+ */
 @Entity
 @Table(name = "VENDEDOR")
 public class Vendedor implements Serializable {

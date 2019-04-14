@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaDTO } from '../apoyo/modelo/personaDTO';
-import { TipoIdentificacion } from '../apoyo/modelo/tipoIdentificacion';
+import { CrearPersonaService } from '../../../servicios/consulta-vehiculo-servicio/crear.persona.service';
+import { PersonaServicioDTO } from '../gestion-vehiculos/modelo/personaServicioDTO';
+import { ConsultaVehiculosService } from '../../../servicios/consulta-vehiculo-servicio/consulta.vehiculo.service';
 
 @Component({
   selector: 'app-creacion-personas',
@@ -9,43 +10,71 @@ import { TipoIdentificacion } from '../apoyo/modelo/tipoIdentificacion';
 export class CreacionPersonasComponent implements OnInit {
 
   public header: string = 'Crear personas';
-  public persona: PersonaDTO;
-  // public tipoIdentificacion : TipoIdentificacion;
-  public personas: PersonaDTO[];
-  datos;
-  public opcionSeleccionado: string = '0'; // Iniciamos
-  public verSeleccion: string = '';
-  constructor() { }
+  public id: number = 1;
+  public nombre: string = 'Juan';
+  public apellidos: string = 'Perez';
+  public tipoIdentificacion: string = 'cedula';
+  public formHidden: boolean = false;
+
+  /**
+   * Declaracion del dto de persona
+   */
+  public personaDTO: PersonaServicioDTO;
+
+  /**
+   * Lista de personas
+   */
+  public personaDTOs: PersonaServicioDTO[];
+  
+  /**
+   * Constructor
+   * @param crearPersonaService 
+   * @param vehiculosService 
+   */
+  constructor(private crearPersonaService: CrearPersonaService,
+    private vehiculosService: ConsultaVehiculosService) {
+  }
 
   ngOnInit() {
-
-    this.persona = {
-      id: '0',
-      nombre: '',
-      apellido: '',
+    this.personaDTO = {
+      idPersona: 0,
+      nombres: '',
+      apellidos: '',
       tipoIdentificacion: '',
-      numeroIdentificacion: 0,
-      mayorEdad: false,
+      numeroIdentificacion: '',
+      edad: 0,
       numeroTelefonico: '',
-      sexo: ''
+      comprador: false,
+      vendedor: false,
+    };
+  }
+
+  /**
+  * Funcion encargada de crear las personas
+  */
+  public crearPersona() {
+    this.crearPersonaService.crearPersona(this.personaDTO).subscribe(persona => {
+      this.personaDTO = persona;
     },
-
-    this.personas = [];
-    this.datos= ["Cedula", "Tarjeta Identidad"];
-  }
-  capturar() {
-    // Pasamos el valor seleccionado a la variable verSeleccion
-    this.verSeleccion = this.opcionSeleccionado;
+      error => {
+        console.log(error);
+      })
   }
 
-  public guardar() {
-    this.personas.push(this.persona);
-    console.log("Esta es la persona creada" + this.persona.nombre);
-    console.log("Esta es la persona creada" + this.persona.apellido);
-    console.log("Esta es la persona creada" + this.persona.tipoIdentificacion);
-    console.log("Esta es la persona creada" + this.persona.numeroTelefonico);
-    // console.log("Esta es la persona creada" + this.persona.numeroIdentificacion);
+  /**
+   * Funcion encargada de consultar las personas
+   */
+  public consultarPersonas() {
+    let tipoID: string = 'cc';
+    let numID: string = '111111';
+    this.vehiculosService.consultarPersonas(tipoID, numID).subscribe(
+      personas => {
+        this.personaDTOs = personas;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log('resultado servicio.... ' + this.personaDTOs)
   }
-
-
 }

@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Clase que determina la entidad del comprador
  */
 @Entity
 @Table(name = "COMPRADOR")
